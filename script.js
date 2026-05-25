@@ -1,31 +1,50 @@
-const myCollection = [];
+let myCollection = [];
 const displayData = document.getElementById("display-data");
 
-myCollection.push(
-  new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
-);
-myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
+// Form & Dialog
+const dialog = document.getElementById("game-dialog");
+const openBtn = document.getElementById("open-btn");
+const closeBtn = document.getElementById("close-btn");
+const form = document.getElementById("form");
+
+// Default games
 myCollection.push(
   new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
 );
+myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
+myCollection.push(
+  new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
+);
 
-myCollection.forEach((game) => {
-  const tableRow = document.createElement("tr");
-  const title = document.createElement("td");
-  const developer = document.createElement("td");
-  const price = document.createElement("td");
-  const status = document.createElement("td");
+// Default display
+displayGames();
 
-  title.textContent = game.title;
-  developer.textContent = game.developer;
-  price.textContent = game.price;
-  status.textContent = game.status;
+openBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
 
-  displayData.appendChild(tableRow);
-  tableRow.appendChild(title);
-  tableRow.appendChild(developer);
-  tableRow.appendChild(price);
-  tableRow.appendChild(status);
+closeBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let title = document.getElementById("title").value;
+  let developer = document.getElementById("developer").value;
+  let price = document.getElementById("price").value;
+  let status = document.getElementById("status").value;
+
+  addGameToCollection(title, developer, price, status);
+
+  document.getElementById("title").value = "";
+  document.getElementById("developer").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("status").value = "Played";
+
+  displayGames();
+
+  dialog.close();
 });
 
 function Game(title, developer, price, status) {
@@ -38,9 +57,50 @@ function Game(title, developer, price, status) {
   this.developer = developer;
   this.price = price;
   this.status = status;
-  this.info = function () {
-    return `The ${this.title} by ${this.developer}, ${this.price}, ${this.status}`;
-  };
 }
 
-function addGameToCollection() {}
+Game.prototype.setStatus = function () {
+  this.status = this.status === "Played" ? "Not Played" : "Played";
+};
+
+function addGameToCollection(title, developer, price, status) {
+  myCollection.push(new Game(title, developer, price, status));
+}
+
+function displayGames() {
+  displayData.innerHTML = "";
+
+  myCollection.forEach((game) => {
+    const tableRow = document.createElement("tr");
+    const titleTd = document.createElement("td");
+    const developerTd = document.createElement("td");
+    const priceTd = document.createElement("td");
+    const statusBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
+
+    tableRow.dataset.id = game.id;
+
+    titleTd.textContent = game.title;
+    developerTd.textContent = game.developer;
+    priceTd.textContent = "₱" + game.price;
+    statusBtn.textContent = game.status;
+    deleteBtn.textContent = "Delete";
+
+    statusBtn.addEventListener("click", () => {
+      game.setStatus();
+      statusBtn.textContent = game.status;
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      myCollection = myCollection.filter((item) => item.id !== game.id);
+      displayGames();
+    });
+
+    displayData.appendChild(tableRow);
+    tableRow.appendChild(titleTd);
+    tableRow.appendChild(developerTd);
+    tableRow.appendChild(priceTd);
+    tableRow.appendChild(statusBtn);
+    tableRow.appendChild(deleteBtn);
+  });
+}

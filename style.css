@@ -5,8 +5,10 @@
 }
 
 body {
+  font-family: system-ui, sans-serif;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -18,5 +20,32 @@ table {
 th,
 td {
   border: 1px solid;
+  padding: 8px;
+}
+
+button {
+  padding: 8px;
+  margin: 12px;
+}
+
+dialog {
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+select {
   padding: 8px;
 }

@@ -15,11 +15,52 @@
           <th>TITLE</th>
           <th>DEVELOPER</th>
           <th>PRICE</th>
-          <th>STATUS</th>
         </tr>
       </thead>
 
       <tbody id="display-data"></tbody>
     </table>
+
+    <button type="button" id="open-btn">Add Game</button>
+
+    <dialog id="game-dialog">
+      <form id="form">
+        <p>Add Game</p>
+
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          required
+        />
+
+        <input
+          type="text"
+          name="developer"
+          id="developer"
+          placeholder="Developer"
+          required
+        />
+
+        <input
+          type="number"
+          name="price"
+          id="price"
+          placeholder="Price"
+          required
+        />
+
+        <select name="status" id="status">
+          <option value="Played">Played</option>
+          <option value="Not Played">Not played</option>
+        </select>
+
+        <div class="actions">
+          <button type="button" id="close-btn">Cancel</button>
+          <button type="submit">Add Game</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
