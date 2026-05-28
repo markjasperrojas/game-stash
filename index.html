@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
@@ -9,7 +15,12 @@
   </head>
 
   <body>
-    <table>
+    <header>
+      <img src="./assets/gamestash-logo.png" alt="Logo" id="logo" />
+      <button type="button" id="signin">Sign in</button>
+    </header>
+
+    <!-- <table>
       <thead>
         <tr>
           <th>TITLE</th>
@@ -21,7 +32,9 @@
       <tbody id="display-data"></tbody>
     </table>
 
-    <button type="button" id="open-btn">Add Game</button>
+    <button type="button" id="open-btn">Add Game</button> -->
+
+    <div class="content"></div>
 
     <dialog id="game-dialog">
       <form id="form">
@@ -62,5 +75,12 @@
         </div>
       </form>
     </dialog>
+
+    <footer>
+      <p>&copy; 2026 Built by markjasperrojas</p>
+      <a href="https://github.com/markjasperrojas" target="_blank"
+        ><img src="./assets/github-logo.svg" alt="Github logo" id="github-logo"
+      /></a>
+    </footer>
   </body>
 </html>

@@ -1,5 +1,65 @@
+function Game(title, developer, price, status) {
+  if (!new.target) {
+    throw Error("You must use the 'new' operator to call the constructor");
+  }
+
+  this.id = crypto.randomUUID();
+  this.title = title;
+  this.developer = developer;
+  this.price = price;
+  this.status = status;
+}
+
+Game.prototype.setStatus = function () {
+  this.status = this.status === "Played" ? "Not Played" : "Played";
+};
+
+function addGameToCollection(title, developer, price, status) {
+  myCollection.push(new Game(title, developer, price, status));
+}
+
+function displayGames() {
+  gamesContainer.innerHTML = "";
+
+  myCollection.forEach((game) => {
+    const card = document.createElement("div");
+    const title = document.createElement("p");
+    const developer = document.createElement("p");
+    const price = document.createElement("p");
+    const statusBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
+
+    card.dataset.id = game.id;
+    card.classList.add("card");
+
+    title.textContent = game.title;
+    developer.textContent = game.developer;
+    price.textContent = "₱" + game.price;
+    statusBtn.textContent = game.status;
+    deleteBtn.textContent = "Delete";
+
+    statusBtn.addEventListener("click", () => {
+      game.setStatus();
+      statusBtn.textContent = game.status;
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      myCollection = myCollection.filter((item) => item.id !== game.id);
+      displayGames();
+    });
+
+    gamesContainer.appendChild(card);
+    card.appendChild(title);
+    card.appendChild(developer);
+    card.appendChild(price);
+    card.appendChild(statusBtn);
+    card.appendChild(deleteBtn);
+  });
+}
+
 let myCollection = [];
-const displayData = document.getElementById("display-data");
+// const displayData = document.getElementById("display-data");
+const gamesContainer = document.querySelector(".content");
 
 // Form & Dialog
 const dialog = document.getElementById("game-dialog");
@@ -8,13 +68,13 @@ const closeBtn = document.getElementById("close-btn");
 const form = document.getElementById("form");
 
 // Default games
-myCollection.push(
-  new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
-);
-myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
-myCollection.push(
-  new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
-);
+// myCollection.push(
+//   new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
+// );
+// myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
+// myCollection.push(
+//   new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
+// );
 
 // Default display
 displayGames();
@@ -47,60 +107,40 @@ form.addEventListener("submit", (e) => {
   dialog.close();
 });
 
-function Game(title, developer, price, status) {
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
-  }
+// function displayGames() {
+//   displayData.innerHTML = "";
 
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.developer = developer;
-  this.price = price;
-  this.status = status;
-}
+//   myCollection.forEach((game) => {
+//     const tableRow = document.createElement("tr");
+//     const titleTd = document.createElement("td");
+//     const developerTd = document.createElement("td");
+//     const priceTd = document.createElement("td");
+//     const statusBtn = document.createElement("button");
+//     const deleteBtn = document.createElement("button");
 
-Game.prototype.setStatus = function () {
-  this.status = this.status === "Played" ? "Not Played" : "Played";
-};
+//     tableRow.dataset.id = game.id;
 
-function addGameToCollection(title, developer, price, status) {
-  myCollection.push(new Game(title, developer, price, status));
-}
+//     titleTd.textContent = game.title;
+//     developerTd.textContent = game.developer;
+//     priceTd.textContent = "₱" + game.price;
+//     statusBtn.textContent = game.status;
+//     deleteBtn.textContent = "Delete";
 
-function displayGames() {
-  displayData.innerHTML = "";
+//     statusBtn.addEventListener("click", () => {
+//       game.setStatus();
+//       statusBtn.textContent = game.status;
+//     });
 
-  myCollection.forEach((game) => {
-    const tableRow = document.createElement("tr");
-    const titleTd = document.createElement("td");
-    const developerTd = document.createElement("td");
-    const priceTd = document.createElement("td");
-    const statusBtn = document.createElement("button");
-    const deleteBtn = document.createElement("button");
+//     deleteBtn.addEventListener("click", () => {
+//       myCollection = myCollection.filter((item) => item.id !== game.id);
+//       displayGames();
+//     });
 
-    tableRow.dataset.id = game.id;
-
-    titleTd.textContent = game.title;
-    developerTd.textContent = game.developer;
-    priceTd.textContent = "₱" + game.price;
-    statusBtn.textContent = game.status;
-    deleteBtn.textContent = "Delete";
-
-    statusBtn.addEventListener("click", () => {
-      game.setStatus();
-      statusBtn.textContent = game.status;
-    });
-
-    deleteBtn.addEventListener("click", () => {
-      myCollection = myCollection.filter((item) => item.id !== game.id);
-      displayGames();
-    });
-
-    displayData.appendChild(tableRow);
-    tableRow.appendChild(titleTd);
-    tableRow.appendChild(developerTd);
-    tableRow.appendChild(priceTd);
-    tableRow.appendChild(statusBtn);
-    tableRow.appendChild(deleteBtn);
-  });
-}
+//     displayData.appendChild(tableRow);
+//     tableRow.appendChild(titleTd);
+//     tableRow.appendChild(developerTd);
+//     tableRow.appendChild(priceTd);
+//     tableRow.appendChild(statusBtn);
+//     tableRow.appendChild(deleteBtn);
+//   });
+// }
