@@ -35,12 +35,26 @@ function displayGames() {
     title.textContent = game.title;
     developer.textContent = game.developer;
     price.textContent = "₱" + game.price;
+
+    if (game.status === "Played") {
+      statusBtn.classList.add("played");
+    } else {
+      statusBtn.classList.add("not-played");
+    }
+
     statusBtn.textContent = game.status;
     deleteBtn.textContent = "Delete";
 
     statusBtn.addEventListener("click", () => {
       game.setStatus();
       statusBtn.textContent = game.status;
+      if (game.status === "Played") {
+        statusBtn.classList.remove("not-played");
+        statusBtn.classList.add("played");
+      } else {
+        statusBtn.classList.remove("played");
+        statusBtn.classList.add("not-played");
+      }
     });
 
     deleteBtn.addEventListener("click", () => {
@@ -58,7 +72,6 @@ function displayGames() {
 }
 
 let myCollection = [];
-// const displayData = document.getElementById("display-data");
 const gamesContainer = document.querySelector(".content");
 
 // Form & Dialog
@@ -68,13 +81,13 @@ const closeBtn = document.getElementById("close-btn");
 const form = document.getElementById("form");
 
 // Default games
-// myCollection.push(
-//   new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
-// );
-// myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
-// myCollection.push(
-//   new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
-// );
+myCollection.push(
+  new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
+);
+myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
+myCollection.push(
+  new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
+);
 
 // Default display
 displayGames();
@@ -106,41 +119,3 @@ form.addEventListener("submit", (e) => {
 
   dialog.close();
 });
-
-// function displayGames() {
-//   displayData.innerHTML = "";
-
-//   myCollection.forEach((game) => {
-//     const tableRow = document.createElement("tr");
-//     const titleTd = document.createElement("td");
-//     const developerTd = document.createElement("td");
-//     const priceTd = document.createElement("td");
-//     const statusBtn = document.createElement("button");
-//     const deleteBtn = document.createElement("button");
-
-//     tableRow.dataset.id = game.id;
-
-//     titleTd.textContent = game.title;
-//     developerTd.textContent = game.developer;
-//     priceTd.textContent = "₱" + game.price;
-//     statusBtn.textContent = game.status;
-//     deleteBtn.textContent = "Delete";
-
-//     statusBtn.addEventListener("click", () => {
-//       game.setStatus();
-//       statusBtn.textContent = game.status;
-//     });
-
-//     deleteBtn.addEventListener("click", () => {
-//       myCollection = myCollection.filter((item) => item.id !== game.id);
-//       displayGames();
-//     });
-
-//     displayData.appendChild(tableRow);
-//     tableRow.appendChild(titleTd);
-//     tableRow.appendChild(developerTd);
-//     tableRow.appendChild(priceTd);
-//     tableRow.appendChild(statusBtn);
-//     tableRow.appendChild(deleteBtn);
-//   });
-// }

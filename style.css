@@ -9,6 +9,7 @@
   --my-second-blue: #06b6d4;
   --my-white: #f5f5f0;
   --my-black: #1a1a1a;
+  --my-red: #ef4444;
 }
 
 html {
@@ -20,25 +21,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 600;
-  font-style: normal;
 }
-
-/* table {
-  border-collapse: collapse;
-} */
-
-/* th,
-td {
-  border: 1px solid;
-  padding: 8px;
-} */
-
-/* button {
-  padding: 8px;
-  margin: 12px;
-} */
 
 /* dialog {
   margin: auto;
@@ -77,12 +61,6 @@ header {
 
 #signin {
   padding: 1rem 2rem;
-  font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  color: var(--my-black);
-  background: var(--my-white);
 }
 
 #logo {
@@ -93,8 +71,40 @@ header {
 /* CONTENT */
 
 .content {
+  padding: 4rem 0;
   flex: 1;
   background: var(--my-second-blue);
+  display: grid;
+  grid-template-columns: repeat(3, 35rem);
+  justify-content: center;
+  gap: 4rem;
+}
+
+.card {
+  height: 30rem;
+  background: var(--my-white);
+  border-radius: 0.7rem;
+  box-shadow: 0 0 1rem -5px var(--my-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  padding: 3rem;
+}
+
+.card > button {
+  width: 100%;
+  height: 4rem;
+  font-size: 1.7rem;
+}
+
+.played {
+  background: var(--my-blue);
+}
+
+.not-played {
+  color: var(--my-red);
 }
 
 /* FOOTER */
@@ -117,4 +127,32 @@ footer {
 
 #github-logo:hover {
   transform: scale(1.05);
+}
+
+/* UNIVERSAL */
+
+button {
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  color: var(--my-black);
+  background: var(--my-white);
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 90rem) {
+  .content {
+    grid-template-columns: repeat(2, 35rem);
+  }
+}
+
+@media (max-width: 50rem) {
+  .content {
+    grid-template-columns: repeat(1, 35rem);
+  }
 }
