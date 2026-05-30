@@ -1,10 +1,10 @@
 # Game Stash
 
-🔗 **Live Demo:** https://markjasperrojas.github.io/game-stash/
-
 Game Stash is a simple website where you can store your favorite games or keep track of games on your wishlist.
 
-This project was inspired by the Library Project from [The Odin Project](https://www.theodinproject.com/). Through this project, I learned the fundamentals of OOP, object constructors, and how to implement them. I also improved my understanding of code organization and structure.
+🔗 **Live Demo:** https://markjasperrojas.github.io/game-stash/
+
+This project was inspired by the Library Project from [The Odin Project](https://www.theodinproject.com/) and it was built from scratch. Through this project, I learned the fundamentals of OOP, object constructors, and how to implement them. I also improved my understanding of code organization and structure.
 
 ### Image Credits
 
