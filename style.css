@@ -103,9 +103,13 @@ header {
   border-radius: 50%;
   font-size: 2rem;
   border: none;
-  background: var(--my-blue);
+  background: var(--my-blue, blue);
   box-shadow: var(--box-shadow);
-  color: var(--my-black);
+  color: var(--my-black, black);
+}
+
+button[type="submit"] {
+  background: var(--my-blue, blue);
 }
 
 /* === FOOTER === */
@@ -148,9 +152,16 @@ button:hover {
 
 dialog {
   margin: auto;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 3rem;
+  border-radius: 1rem;
   border: none;
+  font-size: 2rem;
+}
+
+dialog button {
+  width: 100%;
+  height: 4rem;
+  font-size: 1.7rem;
 }
 
 dialog::backdrop {
@@ -160,12 +171,14 @@ dialog::backdrop {
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.5rem;
 }
 
 input,
 select {
   padding: 8px;
+  font-family: inherit;
+  font-size: 1.7rem;
 }
 
 /* === MEDIA QUERIES === */
