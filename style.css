@@ -10,6 +10,8 @@
   --my-white: #f5f5f0;
   --my-black: #1a1a1a;
   --my-red: #ef4444;
+
+  --box-shadow: 0 0 1rem -5px var(--my-black);
 }
 
 html {
@@ -24,29 +26,7 @@ body {
   font-weight: 600;
 }
 
-/* dialog {
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  border: none;
-} */
-
-/* dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-} */
-
-/* form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-} */
-
-/* input,
-select {
-  padding: 8px;
-} */
-
-/* HEADER */
+/* === HEADER === */
 
 header {
   display: flex;
@@ -56,7 +36,7 @@ header {
   font-size: 4rem;
   font-weight: 600;
   padding: 2.5rem 0;
-  background: var(--my-blue);
+  background: var(--my-blue, blue);
 }
 
 #signin {
@@ -68,12 +48,16 @@ header {
   height: auto;
 }
 
-/* CONTENT */
+/* === CONTENT === */
 
 .content {
-  padding: 4rem 0;
   flex: 1;
-  background: var(--my-second-blue);
+  background: var(--my-second-blue, darkblue);
+}
+
+.games-div {
+  padding: 4rem 0;
+  background: var(--my-second-blue, darkblue);
   display: grid;
   grid-template-columns: repeat(3, 35rem);
   justify-content: center;
@@ -82,9 +66,9 @@ header {
 
 .card {
   height: 30rem;
-  background: var(--my-white);
+  background: var(--my-white, white);
   border-radius: 0.7rem;
-  box-shadow: 0 0 1rem -5px var(--my-black);
+  box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,21 +84,38 @@ header {
 }
 
 .played {
-  background: var(--my-blue);
+  background: var(--my-blue, blue);
 }
 
 .not-played {
-  color: var(--my-red);
+  color: var(--my-red, red);
 }
 
-/* FOOTER */
+.plus-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.plus-button button {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  border: none;
+  background: var(--my-blue);
+  box-shadow: var(--box-shadow);
+  color: var(--my-black);
+}
+
+/* === FOOTER === */
 
 footer {
   text-align: center;
   font-size: 1.8rem;
   padding: 1rem 0;
-  background: var(--my-white);
-  color: var(--my-black);
+  background: var(--my-white, white);
+  color: var(--my-black, black);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,30 +130,54 @@ footer {
   transform: scale(1.05);
 }
 
-/* UNIVERSAL */
+/* === UNIVERSAL === */
 
 button {
   font-family: inherit;
   font-weight: inherit;
   cursor: pointer;
-  color: var(--my-black);
-  background: var(--my-white);
+  color: var(--my-black, black);
+  background: var(--my-white, white);
 }
 
 button:hover {
   filter: brightness(0.9);
 }
 
-/* MEDIA QUERIES */
+/* === DIALOG === */
+
+dialog {
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+select {
+  padding: 8px;
+}
+
+/* === MEDIA QUERIES === */
 
 @media (max-width: 90rem) {
-  .content {
+  .games-div {
     grid-template-columns: repeat(2, 35rem);
   }
 }
 
 @media (max-width: 50rem) {
-  .content {
+  .games-div {
     grid-template-columns: repeat(1, 35rem);
   }
 }

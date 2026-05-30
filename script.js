@@ -72,7 +72,7 @@ function displayGames() {
 }
 
 let myCollection = [];
-const gamesContainer = document.querySelector(".content");
+const gamesContainer = document.querySelector(".games-div");
 
 // Form & Dialog
 const dialog = document.getElementById("game-dialog");
@@ -81,12 +81,12 @@ const closeBtn = document.getElementById("close-btn");
 const form = document.getElementById("form");
 
 // Default games
-myCollection.push(
-  new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
-);
 myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
 myCollection.push(
   new Game("Assassin's Creed Unity", "Ubisoft", 1100, "Played"),
+);
+myCollection.push(
+  new Game("Monster Hunter Wilds", "Capcom", 3490, "Not Played"),
 );
 
 // Default display
