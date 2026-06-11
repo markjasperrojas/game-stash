@@ -1,18 +1,16 @@
-function Game(title, developer, price, status) {
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+class Game {
+  constructor(title, developer, price, status) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.developer = developer;
+    this.price = price;
+    this.status = status;
   }
 
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.developer = developer;
-  this.price = price;
-  this.status = status;
+  setStatus() {
+    this.status = this.status === "Played" ? "Not Played" : "Played";
+  }
 }
-
-Game.prototype.setStatus = function () {
-  this.status = this.status === "Played" ? "Not Played" : "Played";
-};
 
 function addGameToCollection(title, developer, price, status) {
   myCollection.push(new Game(title, developer, price, status));
