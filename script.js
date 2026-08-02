@@ -69,6 +69,14 @@ function displayGames() {
   });
 }
 
+function clearCustomValidity(input) {
+  input.addEventListener("input", () => {
+    if (input.value.trim() !== "") {
+      input.setCustomValidity("");
+    }
+  });
+}
+
 let myCollection = [];
 const gamesContainer = document.querySelector(".games-div");
 
@@ -77,6 +85,15 @@ const dialog = document.getElementById("game-dialog");
 const openBtn = document.getElementById("open-btn");
 const closeBtn = document.getElementById("close-btn");
 const form = document.getElementById("form");
+
+const title = document.getElementById("title");
+const developer = document.getElementById("developer");
+const price = document.getElementById("price");
+const status = document.getElementById("status");
+
+clearCustomValidity(title);
+clearCustomValidity(developer);
+clearCustomValidity(price);
 
 // Default games
 myCollection.push(new Game("Terraria", "Re-Logic", 335, "Played"));
@@ -101,12 +118,25 @@ closeBtn.addEventListener("click", () => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let title = document.getElementById("title").value;
-  let developer = document.getElementById("developer").value;
-  let price = document.getElementById("price").value;
-  let status = document.getElementById("status").value;
+  if (title.value.trim() === "") {
+    title.setCustomValidity("Please enter the game title.");
+    title.reportValidity();
+    return;
+  }
 
-  addGameToCollection(title, developer, price, status);
+  if (developer.value.trim() === "") {
+    developer.setCustomValidity("Please enter the game developer.");
+    developer.reportValidity();
+    return;
+  }
+
+  if (price.value.trim() === "") {
+    price.setCustomValidity("Please enter the game price.");
+    price.reportValidity();
+    return;
+  }
+
+  addGameToCollection(title.value, developer.value, price.value, status.value);
 
   document.getElementById("title").value = "";
   document.getElementById("developer").value = "";

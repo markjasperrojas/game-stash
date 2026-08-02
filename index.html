@@ -29,32 +29,19 @@
     </div>
 
     <dialog id="game-dialog">
-      <form id="form">
+      <form id="form" novalidate>
         <p>Add Game</p>
 
-        <input
-          type="text"
-          name="title"
-          id="title"
-          placeholder="Title"
-          required
-        />
+        <input type="text" name="title" id="title" placeholder="Title" />
 
         <input
           type="text"
           name="developer"
           id="developer"
           placeholder="Developer"
-          required
         />
 
-        <input
-          type="number"
-          name="price"
-          id="price"
-          placeholder="Price"
-          required
-        />
+        <input type="number" name="price" id="price" placeholder="Price" />
 
         <select name="status" id="status">
           <option value="Played">Played</option>
