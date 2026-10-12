@@ -1,5 +1,7 @@
 # Game Stash
 
+<img width="1851" height="886" alt="Screenshot from 2026-10-12 23-51-55" src="https://github.com/user-attachments/assets/d2fcc7d1-8ce1-408b-aa28-0d0c2266e89e" />
+
 Game Stash is a simple website where you can store your favorite games or keep track of games on your wishlist.
 
 🔗 **Live Demo:** https://markjasperrojas.github.io/game-stash/
